@@ -30,7 +30,7 @@ Inductive sorted : list nat -> Prop :=
                   sorted (n2::l) ->
                   sorted (n1::n2::l).
 
-Lemma insert_preserve_sorted_list : forall (n : nat) (l : list nat),
+Lemma insert_preserves_sortedness : forall (n : nat) (l : list nat),
                                       sorted l ->
                                       sorted (insert n l).
 Proof.
@@ -62,5 +62,5 @@ Proof.
   induction l.
   - rewrite /insert. constructor.
   - rewrite /insert-/insert.
-    apply (insert_preserve_sorted_list _ _ IHl).
+    apply (insert_preserves_sortedness _ _ IHl).
 Qed.
